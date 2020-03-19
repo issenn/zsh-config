@@ -16,6 +16,8 @@ export HOMEBREW_FORCE_BREWED_GIT="1"
 
 export HOMEBREW_FORCE_BREWED_CURL=1
 
+export HOMEBREW_CURLRC=1
+
 export GNUPGHOME="${XDG_CONFIG_HOME:-${HOME}/.config}/.gnupg"
 export GPG_TTY=$(tty)
 
