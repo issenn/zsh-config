@@ -268,6 +268,9 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/git-extras/git-extras.plugin.zsh
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
+zinit snippet OMZ::plugins/rbenv/rbenv.plugin.zsh
+zinit snippet OMZ::plugins/nvm/nvm.plugin.zsh
 
 zinit ice svn if'[[ -n "$commands[tmux]" ]]' lucid
 zinit snippet OMZ::plugins/tmux
