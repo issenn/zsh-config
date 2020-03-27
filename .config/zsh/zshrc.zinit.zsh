@@ -101,12 +101,23 @@ HIST_STAMPS="yyyy-mm-dd"
 [[ -z "${ZSH_TMUX_FIXTERM}" ]] && ZSH_TMUX_FIXTERM=true
 [[ -z "${ZSH_TMUX_UNICODE}" ]] && ZSH_TMUX_UNICODE=true
 
-if [[ ! -f "${XDG_DATA_HOME}/tmux/plugins/tpm/tpm" ]]; then
+if [[ ! -f "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm/tpm" ]]; then
   command git clone git@github.com:tmux-plugins/tpm.git "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm"
   # command zsh "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm/bin/install_plugins"
   command mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/"{logging,resurrect}
 fi
 
+# }}}1
+
+# rime squirrel plum {{{1
+if (( $+commands[brew] )) && dir=$(brew --prefix squirrel 2>/dev/null); then
+  if [[ ! -f "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/rime-install" ]]; then
+    command git clone --depth 1 https://github.com/rime/plum.git "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum"
+  fi
+  # if [[ ! -d "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/package/rime/double-pinyin" ]]; then
+  #   command bash "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/rime-install" "double-pinyin"
+  # fi
+fi
 # }}}1
 
 # {{{1
