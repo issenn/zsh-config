@@ -29,12 +29,18 @@ _darcs
 .*.swp
 ^/@.*
 
+^/\.stowrc
+^/\.github
+\.editorconfig
 
 # Custom rules (everything added below won't be overriden by 'Generate .stow-local-ignore File' if you use 'Update' option)
 
+.*\.gpg
+.*ohmyzsh.*
 Brewfile
 ^/\.local
 .*\.zwc
 \.zcompdump.*
 \.histfile
 \.zsh_history
+\.zsh_history\.tar\.gz

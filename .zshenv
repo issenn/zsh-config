@@ -1,4 +1,12 @@
 
+# export LANG=C.UTF-8
+export LANG=en_US.UTF-8
+# export LC_ALL=C
+# export LC_ALL=C.UTF-8
+export LC_ALL=en_US.UTF-8
+# export LANGUAGE=C.UTF-8
+export LANGUAGE=en_US.UTF-8
+
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
 
@@ -10,7 +18,8 @@ ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 export GIT_TERMINAL_PROMPT=1
 
-export HOMEBREW_GITHUB_API_TOKEN="2a77c75414e3948db1cf954eb06d7b856f9d7c86"
+# export HOMEBREW_GITHUB_API_TOKEN=""
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zsh.secret"
 export HOMEBREW_FORCE_BREWED_GIT="1"
 export HOMEBREW_FORCE_BREWED_CURL=1
 export HOMEBREW_CURLRC=1

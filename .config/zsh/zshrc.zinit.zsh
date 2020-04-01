@@ -58,7 +58,8 @@ typeset -A ZINIT=(
   HOME_DIR        "${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/zinit"
   PLUGINS_DIR     "${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/zinit/plugins"
   SNIPPETS_DIR    "${XDG_DATA_HOME:-${HOME}/.local/share}/zsh/zinit/snippets"
-  ZCOMPDUMP_PATH  "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompdump-$(whoami)-${ZSH_VERSION}"
+  # ZCOMPDUMP_PATH  "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zcompdump-$(whoami)-${ZSH_VERSION}"
+  ZCOMPDUMP_PATH  "${XDG_CACHE_HOME:-${HOME}/.cache}/zsh/.zcompdump-$(whoami)-${ZSH_VERSION}"
   COMPINIT_OPTS   "-C"
 )
 
@@ -282,6 +283,7 @@ zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
 zinit snippet OMZ::plugins/rbenv/rbenv.plugin.zsh
 zinit snippet OMZ::plugins/nvm/nvm.plugin.zsh
+zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
 
 zinit ice svn if'[[ -n "$commands[tmux]" ]]' lucid
 zinit snippet OMZ::plugins/tmux
