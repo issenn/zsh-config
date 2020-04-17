@@ -1,12 +1,4 @@
 
-# Default Java Home.
-# [[ -z "$JAVA_VERSION" ]] && JAVA_VERSION=1.8
-# [[ -s /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
-
-export NVM_DIR="${XDG_CONFIG_HOME}/.nvm"
-[ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-[ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-
 # PERL_MM_OPT="INSTALL_BASE=${XDG_CONFIG_HOME}/.perl5" cpan local::lib
 # eval "$(perl -I${XDG_CONFIG_HOME}/.perl5/lib/perl5 -Mlocal::lib=${XDG_CONFIG_HOME}/.perl5)"
 

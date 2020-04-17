@@ -19,6 +19,37 @@
 #   SHELL=$(which zsh)
 # fi
 
+
+# Start: Zsh ENV PATH
+
+export PATH="/usr/local/opt/openssl@1.1/bin:${PATH}"
+
+# export PATH="/usr/local/opt/curl/bin:$PATH"
+# export PATH="/usr/local/opt/curl-openssl/bin:$PATH"
+# export PATH="/usr/local/opt/curl-max/bin:$PATH"
+
+export PATH="/usr/local/opt/grep/libexec/gnubin:${PATH}"
+
+# export PATH="/usr/local/opt/gnu-which/libexec/gnubin:$PATH"
+
+# export MANPATH="/usr/local/opt/make/libexec/gnuman:$MANPATH"
+
+# export PATH="/usr/local/opt/sqlite/bin:$PATH"
+
+# export PATH="/usr/local/opt/m4/bin:$PATH"
+
+# export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
+# export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
+
+export PATH="/usr/local/opt/ruby/bin:${PATH}"
+
+export PATH="/usr/local/opt/node/bin:${PATH}"
+
+export GPG_TTY=$(tty)
+
+# End: Zsh ENV PATH
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -65,7 +96,7 @@ typeset -A ZINIT=(
 
 # typeset -g ZPLG_MOD_DEBUG=1
 
-if [[ ! -f "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
+if [[ ! -s "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
   command git clone git@github.com:issenn/zinit.git "${ZINIT[BIN_DIR]}" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f" || \
@@ -93,6 +124,8 @@ autoload -Uz _zinit
 HIST_STAMPS="yyyy-mm-dd"
 # }}}1
 
+[[ -d "${XDG_CACHE_HOME:-${HOME}/.cache}/less" ]] || mkdir -p "${XDG_CACHE_HOME:-${HOME}/.cache}/less"
+
 # tmux {{{1
 [[ -z "${ZSH_TMUX_CONFIG}" ]] && ZSH_TMUX_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/tmux/tmux.conf"
 [[ -z "${ZSH_TMUX_AUTOSTART}" ]] && ZSH_TMUX_AUTOSTART=false  # tmux自启动有问题
@@ -102,7 +135,7 @@ HIST_STAMPS="yyyy-mm-dd"
 [[ -z "${ZSH_TMUX_FIXTERM}" ]] && ZSH_TMUX_FIXTERM=true
 [[ -z "${ZSH_TMUX_UNICODE}" ]] && ZSH_TMUX_UNICODE=true
 
-if [[ ! -f "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm/tpm" ]]; then
+if [[ ! -s "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm/tpm" ]]; then
   command git clone git@github.com:tmux-plugins/tpm.git "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm"
   # command zsh "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/plugins/tpm/bin/install_plugins"
   command mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/tmux/"{logging,resurrect}
@@ -112,13 +145,24 @@ fi
 
 # rime squirrel plum {{{1
 if (( $+commands[brew] )) && dir=$(brew --prefix squirrel 2>/dev/null); then
-  if [[ ! -f "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/rime-install" ]]; then
+  if [[ ! -s "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/rime-install" ]]; then
     command git clone --depth 1 https://github.com/rime/plum.git "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum"
   fi
   # if [[ ! -d "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/package/rime/double-pinyin" ]]; then
   #   command bash "${XDG_DATA_HOME:-${HOME}/.local/share}/Rime/plum/rime-install" "double-pinyin"
   # fi
 fi
+# }}}1
+
+[[ -d "${XDG_CONFIG_HOME:-${HOME}/.config}/mysql" ]] || mkdir -p "${XDG_CONFIG_HOME:-${HOME}/.config}/mysql"
+
+# nvm {{{1
+# ZSH_NVM_NO_LOAD=true
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+# export NVM_SYMLINK_CURRENT="true"  # nvm use should make a symlink
+export NVM_LAZY_LOAD=true
+# export NVM_NO_USE=true
+export NVM_AUTO_USE=true
 # }}}1
 
 # {{{1
@@ -149,6 +193,11 @@ GENCOMP_DIR="${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/completions"
 export _ZL_DATA="${XDG_DATA_HOME:-${HOME}/.local/share}/z.lua/.z"
 if [[ ! -f "${_ZL_DATA}" ]]; then
   command mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/z.lua"
+fi
+
+export FZF_MARKS_FILE="${XDG_DATA_HOME:-${HOME}/.local/share}/fzf-marks/.fzf-marks"
+if [[ ! -f "${FZF_MARKS_FILE}" ]]; then
+  command mkdir -p "${XDG_DATA_HOME:-${HOME}/.local/share}/fzf-marks"
 fi
 
 export AGV_EDITOR='kwrite -l $line -c $col $file'
@@ -240,6 +289,8 @@ zinit snippet https://cht.sh/:cht.sh
 zinit ice mv=":zsh -> _cht" as="completion"
 zinit snippet https://cheat.sh/:zsh
 
+zinit light lukechilds/zsh-nvm  # This load nvm on first use of node, npm, etc
+
 # End: Zinit Programs
 
 
@@ -282,7 +333,6 @@ zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
 zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
 zinit snippet OMZ::plugins/rbenv/rbenv.plugin.zsh
-zinit snippet OMZ::plugins/nvm/nvm.plugin.zsh
 zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
 
 zinit ice svn if'[[ -n "$commands[tmux]" ]]' lucid
@@ -294,6 +344,7 @@ zinit ice svn
 zinit snippet OMZ::plugins/pip
 
 zinit as="completion" for \
+  OMZ::plugins/nvm/_nvm \
   OMZ::plugins/cargo/_cargo \
   OMZ::plugins/rust/_rust \
   OMZ::plugins/fd/_fd
@@ -331,6 +382,8 @@ ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay
 
 # zinit ice lucid id-as"auto"
 # zinit snippet 'https://github.com/issenn/zsh-config/blob/master/.config/zsh/snippets/alias.zsh'
+
+alias rm="rm -i"
 
 zinit ice lucid id-as"auto"
 # zinit snippet 'https://github.com/issenn/zsh-config/blob/master/.config/zsh/snippets/key-bindings.zsh'
