@@ -1,6 +1,7 @@
 # zsh-config
 
 校验 True-Color 的方法：
+
 ```sh
 awk 'BEGIN{
     s="/\\/\\/\\/\\/\\"; s=s s s s s s s s;
