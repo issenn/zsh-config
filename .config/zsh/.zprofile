@@ -4,21 +4,6 @@
 
 # eval "$(gh-md-toc --completion-script-zsh)"
 
-# # export GOROOT="/usr/local/go"
-# export GOROOT="/usr/local/opt/go/libexec"
-
-# # export GOPATH="${HOME}/go"
-# [[ -z "$GOPATH" ]] && export GOPATH="${HOME}/go"
-
-# export PATH="${GOROOT}/bin:${GOPATH}/bin:$PATH"
-
-# # Enable the go modules feature
-# export GO111MODULE=on
-
-# # Set the GOPROXY environment variable
-# export GOPROXY=https://goproxy.io,direct
-# # export GOPROXY=https://goproxy.cn,direct
-
 # # export ANDROID_SDK_ROOT="${HOME}/Library/Android/sdk"
 # export ANDROID_SDK_ROOT="/usr/local/share/android-sdk"
 

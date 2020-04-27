@@ -45,7 +45,9 @@ export PATH="/usr/local/opt/ruby/bin:${PATH}"
 
 export PATH="/usr/local/opt/node/bin:${PATH}"
 
-export GPG_TTY=$(tty)
+export PATH="${GOROOT}/bin:${GOPATH}/bin:${PATH}"
+
+export PATH="$(yarn global bin):${PATH}"
 
 # End: Zsh ENV PATH
 
@@ -331,8 +333,17 @@ zinit snippet OMZ::plugins/colored-man-pages/colored-man-pages.plugin.zsh
 zinit snippet OMZ::plugins/git-extras/git-extras.plugin.zsh
 zinit snippet OMZ::plugins/systemd/systemd.plugin.zsh
 zinit snippet OMZ::plugins/sudo/sudo.plugin.zsh
+zinit snippet OMZ::plugins/brew/brew.plugin.zsh
 zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
 zinit snippet OMZ::plugins/rbenv/rbenv.plugin.zsh
+zinit snippet OMZ::plugins/npm/npm.plugin.zsh
+zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
+zinit snippet OMZ::plugins/golang/golang.plugin.zsh
+zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
+zinit snippet OMZ::plugins/docker-machine/docker-machine.plugin.zsh
+zinit snippet OMZ::plugins/python/python.plugin.zsh
+zinit snippet OMZ::plugins/django/django.plugin.zsh
+zinit snippet OMZ::plugins/gpg-agent/gpg-agent.plugin.zsh
 zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
 
 zinit ice svn if'[[ -n "$commands[tmux]" ]]' lucid
@@ -345,9 +356,24 @@ zinit snippet OMZ::plugins/pip
 
 zinit as="completion" for \
   OMZ::plugins/nvm/_nvm \
+  OMZ::plugins/yarn/_yarn \
   OMZ::plugins/cargo/_cargo \
   OMZ::plugins/rust/_rust \
+  OMZ::plugins/adb/_adb \
   OMZ::plugins/fd/_fd
+
+zinit ice as="completion"
+zinit snippet 'https://github.com/docker/cli/blob/master/contrib/completion/zsh/_docker'
+# zinit snippet '/Applications/Docker.app/Contents/Resources/etc/docker.zsh-completion'
+
+# https://docs.docker.com/compose/completion/#zsh
+zinit ice as="completion"
+zinit snippet 'https://github.com/docker/compose/blob/master/contrib/completion/zsh/_docker-compose'
+# zinit snippet '/Applications/Docker.app/Contents/Resources/etc/docker-compose.zsh-completion'
+
+# https://docs.docker.com/machine/completion/#zsh
+zinit ice as="completion"
+zinit snippet 'https://github.com/docker/machine/blob/master/contrib/completion/zsh/_docker-machine'
 
 # End: Zinit Snippets
 

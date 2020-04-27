@@ -3,7 +3,7 @@ skip_global_compinit=1
 
 
 # Default Java Home.
-[[ -z "$JAVA_VERSION" ]] && JAVA_VERSION=1.8
+[[ -z "${JAVA_VERSION}" ]] && JAVA_VERSION=1.8
 [[ -s /usr/libexec/java_home ]] && export JAVA_HOME=$(/usr/libexec/java_home -v $JAVA_VERSION)
 
 export CURL_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/curl"
@@ -30,9 +30,21 @@ export HOMEBREW_CURLRC=1
 
 export GNUPGHOME="${XDG_CONFIG_HOME:-${HOME}/.config}/gnupg"
 
-export DOCKER_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/docker"
+# export DOCKER_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/docker"
 
-export MACHINE_STORAGE_PATH="${XDG_DATA_HOME:-${HOME}/.local/share}/docker/machine"
+# export MACHINE_STORAGE_PATH="${XDG_DATA_HOME:-${HOME}/.local/share}/docker/machine"
+
+export GOROOT="/usr/local/opt/go/libexec"
+
+# export GOPATH="${HOME}/go"
+[[ -z "${GOPATH}" ]] && export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
+
+# Enable the go modules feature
+export GO111MODULE=on
+
+# Set the GOPROXY environment variable
+export GOPROXY=https://goproxy.io,direct
+# export GOPROXY=https://goproxy.cn,direct
 
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
@@ -40,6 +52,8 @@ export PYTHON_BUILD_ARIA2_OPTS="-x 10 -k 1M"
 export PYENV_ROOT="${XDG_CONFIG_HOME:-${HOME}/.config}/pyenv"
 # PYLINTHOME
 # PYLINTRC
+
+# PYTHONUNBUFFERED=1
 
 export RBENV_ROOT="${XDG_CONFIG_HOME:-${HOME}/.config}/rbenv"
 
