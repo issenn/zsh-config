@@ -17,3 +17,27 @@ awk 'BEGIN{
     printf "\n";
 }'
 ```
+
+## Usage
+
+### plenv
+
+
+#### cpan
+
+```sh
+cpan local::lib
+```
+
+#### [cpanm](http://cpanmin.us/)
+
+"system" perl has correctly configured httpS support, but if you've switched to another plenv version, you'll need to install https support for that version:
+
+```sh
+plenv install-cpanm
+cpanm Mozilla::CA
+cpanm LWP
+cpanm LWP::Protocol::https
+```
+
+> [tokuhirom/plenv #163 no backend configured for scheme https #163](https://github.com/tokuhirom/plenv/issues/163)

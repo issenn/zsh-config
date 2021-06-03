@@ -26,9 +26,23 @@ export GIT_TERMINAL_PROMPT=1
 source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zsh.secret"
 export HOMEBREW_FORCE_BREWED_GIT="1"
 export HOMEBREW_FORCE_BREWED_CURL=1
+export HOMEBREW_CURL_RETRIES=10
 export HOMEBREW_CURLRC=1
 
-export GNUPGHOME="${XDG_CONFIG_HOME:-${HOME}/.config}/gnupg"
+# export HOMEBREW_DISPLAY_INSTALL_TIMES=1
+
+# export HOMEBREW_NO_AUTO_UPDATE=1
+
+export HOMEBREW_BUNDLE_FILE="${HOME}/dotfiles/Brewfile"
+
+[[ "${UID}" -ge 500 && -d "${XDG_CONFIG_HOME:-${HOME}/.config}/gnupg" && -z "${GNUPGHOME}" ]] && export GNUPGHOME="${XDG_CONFIG_HOME:-${HOME}/.config}/gnupg"
+
+# export SOPS_GPG_EXEC="gpg"
+# export SOPS_PGP_FP=""
+# export SOPS_KMS_ARN=""
+
+[[ -z "${SOPS_AGE_KEY_FILE}" ]] && export SOPS_AGE_KEY_FILE="${XDG_CONFIG_HOME:-${HOME}/.config}/sops/keys.txt"
+# export SOPS_AGE_RECIPIENTS=""
 
 # export DOCKER_CONFIG="${XDG_CONFIG_HOME:-${HOME}/.config}/docker"
 
@@ -40,11 +54,28 @@ export GOROOT="/usr/local/opt/go/libexec"
 [[ -z "${GOPATH}" ]] && export GOPATH="${XDG_DATA_HOME:-${HOME}/.local/share}/go"
 
 # Enable the go modules feature
-export GO111MODULE=on
+export GO111MODULE="on"
 
 # Set the GOPROXY environment variable
-export GOPROXY=https://goproxy.io,direct
-# export GOPROXY=https://goproxy.cn,direct
+# https://github.com/goproxy/goproxy.cn
+# https://github.com/goproxyio/goproxy
+export GOPROXY="https://goproxy.io,https://goproxy.cn,direct"
+
+# Go Checksum Database
+# A global Go checksum database, we follow google's privacy policy.
+# export GOSUMDB=gosum.io+ce6e7565+AY5qEHUk/qmHc5btzW45JVoENfazw8LielDsaI+lEbq6
+
+# For local::lib
+# export PERL_MB_OPT="--install_base \"${XDG_DATA_HOME:-${HOME}/.local/share}/perl5\"";  # Only cpan
+# export PERL_MM_OPT="INSTALL_BASE=${XDG_DATA_HOME:-${HOME}/.local/share}/perl5";  # Only cpan
+export PERL5LIB="${XDG_DATA_HOME:-${HOME}/.local/share}/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}";
+export PERL_LOCAL_LIB_ROOT="${XDG_DATA_HOME:-${HOME}/.local/share}/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}";
+
+# Fetched files are unpacked in PERL_CPANM_HOME and automatically cleaned up periodically.
+export PERL_CPANM_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/cpanm"
+# export PERL_CPANM_OPT="--prompt --reinstall -l ${XDG_DATA_HOME:-${HOME}/.local/share}/perl5 --mirror http://cpan.cpantesters.org"
+
+export PLENV_ROOT="${XDG_CONFIG_HOME:-${HOME}/.config}/plenv"
 
 # export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 

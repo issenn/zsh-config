@@ -8,6 +8,6 @@ endot()
 
 dedot()
 {
-  gpg -do "${1%.gpg}" "$1"
+  gpg -o "${1%.gpg}" -d "$1"
   # rm "$1"
 }
