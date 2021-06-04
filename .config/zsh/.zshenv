@@ -23,7 +23,7 @@ export SUBVERSION_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/subversion"
 export GIT_TERMINAL_PROMPT=1
 
 # export HOMEBREW_GITHUB_API_TOKEN=""
-source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zsh.secret"
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.token.secret.zsh"
 export HOMEBREW_FORCE_BREWED_GIT="1"
 export HOMEBREW_FORCE_BREWED_CURL=1
 export HOMEBREW_CURL_RETRIES=10
