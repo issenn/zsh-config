@@ -43,8 +43,10 @@ _darcs
 .*ohmyzsh.*
 .*Brewfile
 ^/\.local
+
 .*\.zwc
 \.zcompdump.*
 \.histfile
 \.zsh_history
-\.zsh_history\.tar\.gz
+.*\.tar\.gz
+.*zsh_history\.tar\.gz
