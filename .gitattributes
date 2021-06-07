@@ -1,4 +1,5 @@
 **/zsh/envs/**/*.env    filter=git-crypt    diff=git-crypt
+**/zsh/**/*.secret.env  filter=git-crypt    diff=git-crypt
 **/zsh/**/*.secret.zsh  filter=git-crypt    diff=git-crypt
 **/zsh/**/*.zsh_history filter=git-crypt    diff=git-crypt
 .gitattributes          !filter             !diff

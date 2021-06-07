@@ -7,6 +7,8 @@ local env_file="launchd.frps.env"
 [[ -z "$(launchctl getenv FRP_VHOST_HTTPS_PORT)" ]] && launchctl setenv FRP_VHOST_HTTPS_PORT ${FRP_VHOST_HTTPS_PORT}
 [[ -z "$(launchctl getenv FRP_SUBDOMAIN_HOST)" ]] && launchctl setenv FRP_SUBDOMAIN_HOST ${FRP_SUBDOMAIN_HOST}
 
+unset env_file
+
 # launchctl getenv FRP_VHOST_HTTP_PORT
 # launchctl getenv FRP_VHOST_HTTPS_PORT
 # launchctl getenv FRP_SUBDOMAIN_HOST

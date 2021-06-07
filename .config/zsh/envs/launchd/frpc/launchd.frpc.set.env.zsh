@@ -10,6 +10,8 @@ local env_file="launchd.0.frpc.env"
 [[ -z "$(launchctl getenv FRP_CUSTOM_DOMAINS)" ]] && launchctl setenv FRP_CUSTOM_DOMAINS ${FRP_CUSTOM_DOMAINS}
 [[ -z "$(launchctl getenv FRP_SSH_REMOTE_PORT)" ]] && launchctl setenv FRP_SSH_REMOTE_PORT ${FRP_SSH_REMOTE_PORT}
 
+unset env_file
+
 # launchctl getenv FRP_SERVER_ADDR
 # launchctl getenv FRP_SERVER_PORT
 # launchctl getenv FRP_USER

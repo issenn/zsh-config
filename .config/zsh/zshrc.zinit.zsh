@@ -81,6 +81,16 @@ export PATH="$(yarn global bin)${PATH:+:${PATH}}"
 # End: Zsh ENV PATH
 
 
+# Start: Zsh ENV
+
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/launchd/frpc/launchd.frpc.set.env.zsh"
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/launchd/frps/launchd.frps.set.env.zsh"
+
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/rbw/rbw.env.zsh"
+
+# End: Zsh ENV
+
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -376,6 +386,7 @@ zinit snippet OMZ::plugins/docker-machine/docker-machine.plugin.zsh
 zinit snippet OMZ::plugins/python/python.plugin.zsh
 zinit snippet OMZ::plugins/django/django.plugin.zsh
 zinit snippet OMZ::plugins/autojump/autojump.plugin.zsh
+zinit snippet https://github.com/issenn/zsh-plugin/blob/master/plugins/rbw/rbw.plugin.zsh
 
 zinit ice svn if'[[ -n "$commands[tmux]" ]]' lucid
 zinit snippet OMZ::plugins/tmux
