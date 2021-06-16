@@ -1,3 +1,6 @@
+# Environment variables configuration
+# Always read
+
 # Language
 # export LANGUAGE=C.UTF-8
 export LANGUAGE=en_US.UTF-8
@@ -7,6 +10,9 @@ export LC_CTYPE=en_US.UTF-8
 # export LC_ALL=C
 # export LC_ALL=C.UTF-8
 export LC_ALL=en_US.UTF-8
+# export TERM=xterm-256color
+
+# Set ZSH config root to home (which is the default)
 
 # XDG Base Directory specification
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
@@ -23,6 +29,14 @@ export XDG_RUNTIME_DIR="${HOME}/.run"
 export ZDOTDIR="${XDG_CONFIG_HOME}/zsh"
 [[ "${UID}" -ge 500 && -n "${ZDOTDIR}" && ! -d "${ZDOTDIR}" ]] && mkdir -p "${ZDOTDIR}"
 
-[[ "${UID}" -ge 500 && -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zshenv" ]] && source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zshenv"
+[[ "${UID}" -ge 500 ]] &&
+  {
+    [[ -f "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zshenv" ]] &&
+    source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/.zshenv" ||
+    {
+      [[ -f "${0:a:h}/.config/zsh/.zshenv" ]] &&
+      source "${0:a:h}/.config/zsh/.zshenv"
+    }
+  }
 
 export DOTFILES_DIR=${0:a:h}/dotfiles

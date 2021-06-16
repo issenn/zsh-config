@@ -1,3 +1,6 @@
+# Environment variables configuration
+# Always read
+
 # Skip the not really helping Ubuntu global compinit
 skip_global_compinit=1
 
@@ -91,5 +94,6 @@ export RBENV_ROOT="${XDG_CONFIG_HOME:-${HOME}/.config}/rbenv"
 # export IPYTHONDIR=$XDG_CONFIG_HOME/ipython
 # export JUPYTER_CONFIG_DIR=$XDG_CONFIG_HOME/jupyter
 # export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/config
+# export GTAGSLABEL=pygments
 
 export MYSQL_HISTFILE="${XDG_CONFIG_HOME:-${HOME}/.config}/mysql/mysql_history"

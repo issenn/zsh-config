@@ -1,3 +1,5 @@
+# Login shell configuration
+# Read when starting as a login shell
 
 # PERL_MM_OPT="INSTALL_BASE=${XDG_CONFIG_HOME}/.perl5" cpan local::lib
 # eval "$(perl -I${XDG_CONFIG_HOME}/.perl5/lib/perl5 -Mlocal::lib=${XDG_CONFIG_HOME}/.perl5)"

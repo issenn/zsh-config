@@ -20,68 +20,9 @@
 # fi
 
 
-# Start: Zsh ENV PATH
-
-# https://wiki.archlinux.org/index.php/Environment_variables#Globally
-# If user ID is greater than or equal to 1000 & if ~/bin exists and is a directory & if ~/bin is not already in your $PATH
-# then export ~/bin to your $PATH.
-# if [[ $UID -ge 1000 && -d $HOME/bin && -z $(echo $PATH | grep -o $HOME/bin) ]]
-# then
-#     export PATH="${PATH}:$HOME/bin"
-# fi
-
-# zsh
-export MANPATH="/usr/local/opt/zsh/share/man${MANPATH:+:${MANPATH}}"
-
-export PATH="/usr/local/opt/grep/libexec/gnubin${PATH:+:${PATH}}"
-export MANPATH="/usr/local/opt/grep/libexec/gnuman${MANPATH:+:${MANPATH}}"
-
-if [[ "${UID}" -ge 500 && -d "/usr/local/opt/openssl@1.1/bin" && -z "$(echo ${PATH} | grep -o /usr/local/opt/openssl@1.1/bin)" ]]
-then
-  export PATH="/usr/local/opt/openssl@1.1/bin${PATH:+:${PATH}}"
-fi
-
-if [[ "${UID}" -ge 500 && -d "/usr/local/opt/curl/bin" && -z "$(echo ${PATH} | grep -o /usr/local/opt/curl/bin)" ]]
-then
-  export PATH="/usr/local/opt/curl/bin${PATH:+:${PATH}}"
-  # export PATH="/usr/local/opt/curl-openssl/bin${PATH:+:${PATH}}"
-  # export PATH="/usr/local/opt/curl-max/bin${PATH:+:${PATH}}"
-fi
-
-export PATH="/usr/local/opt/gnu-which/libexec/gnubin${PATH:+:${PATH}}"
-export MANPATH="/usr/local/opt/gnu-which/libexec/gnuman${MANPATH:+:${MANPATH}}"
-
-export PATH="/usr/local/opt/make/libexec/gnubin${PATH:+:${PATH}}"
-export MANPATH="/usr/local/opt/make/libexec/gnuman${MANPATH:+:${MANPATH}}"
-
-export PATH="/usr/local/opt/gnu-tar/libexec/gnubin${PATH:+:${PATH}}"
-export MANPATH="/usr/local/opt/gnu-tar/libexec/gnuman${MANPATH:+:${MANPATH}}"
-
-export PATH="/usr/local/opt/zip/bin${PATH:+:${PATH}}"
-export PATH="/usr/local/opt/unzip/bin${PATH:+:${PATH}}"
-
-# export PATH="/usr/local/opt/sqlite/bin:$PATH"
-
-# export PATH="/usr/local/opt/m4/bin:$PATH"
-
-# export PATH="/usr/local/opt/e2fsprogs/bin:$PATH"
-# export PATH="/usr/local/opt/e2fsprogs/sbin:$PATH"
-
-export PATH="${XDG_DATA_HOME:-${HOME}/.local/share}/perl5/bin${PATH:+:${PATH}}";
-
-export PATH="/usr/local/opt/ruby/bin${PATH:+:${PATH}}"
-
-export PATH="/usr/local/opt/node/bin${PATH:+:${PATH}}"
-
-# export PATH="${GOROOT:+${GOROOT}/bin}${GOPATH:+:${GOPATH}/bin}${PATH:+:${PATH}}"
-export PATH="${GOPATH:+:${GOPATH}/bin}${PATH:+:${PATH}}"
-
-export PATH="$(yarn global bin)${PATH:+:${PATH}}"
-
-# End: Zsh ENV PATH
-
-
 # Start: Zsh ENV
+
+source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/paths.d/paths.env.zsh"
 
 source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/launchd/frpc/launchd.frpc.set.env.zsh"
 source "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/envs/launchd/frps/launchd.frps.set.env.zsh"
@@ -139,6 +80,7 @@ typeset -A ZINIT=(
 
 if [[ ! -s "${ZINIT[BIN_DIR]}/zinit.zsh" ]]; then
   print -P "%F{33}▓▒░ %F{220}Installing DHARMA Initiative Plugin Manager (zdharma/zinit)…%f"
+  command mkdir -p "${ZINIT[HOME_DIR]}" && command chmod g-rwX "${ZINIT[HOME_DIR]}"
   command git clone git@github.com:issenn/zinit.git "${ZINIT[BIN_DIR]}" && \
     print -P "%F{33}▓▒░ %F{34}Installation successful.%f" || \
     print -P "%F{160}▓▒░ The clone has failed.%f"
@@ -198,11 +140,21 @@ fi
 [[ -d "${XDG_CONFIG_HOME:-${HOME}/.config}/mysql" ]] || mkdir -p "${XDG_CONFIG_HOME:-${HOME}/.config}/mysql"
 
 # nvm {{{1
+# Homebrew installation is not supported. # https://github.com/nvm-sh/nvm#important-notes
+# NVM_HOMEBREW="$(brew --prefix nvm 2>/dev/null)"
+# [[ -n "${NVM_HOMEBREW}" ]] && export NVM_HOMEBREW="${NVM_HOMEBREW}"
+# unset NVM_HOMEBREW
+
+# Don't init anything if this is true (debug/testing only)
 # ZSH_NVM_NO_LOAD=true
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.config/nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+
 # export NVM_SYMLINK_CURRENT="true"  # nvm use should make a symlink
+
 export NVM_LAZY_LOAD=true
 # export NVM_NO_USE=true
+
 export NVM_AUTO_USE=true
 # }}}1
 
@@ -357,6 +309,8 @@ zinit light trapd00r/LS_COLORS
 zinit snippet OMZ::lib/clipboard.zsh
 # OMZ 主题基本上都使用了 OMZ 提供的 git 库，因此使用这些主题之前需要先加载 git.zsh
 zinit snippet OMZ::lib/git.zsh
+zinit snippet OMZ::lib/nvm.zsh
+# zinit snippet OMZ::lib/prompt_info_functions.zsh
 zinit snippet OMZ::lib/completion.zsh
 zinit snippet OMZ::lib/history.zsh
 # 直接加载 OMZ 的键位绑定
