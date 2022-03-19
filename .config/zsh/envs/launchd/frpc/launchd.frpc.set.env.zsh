@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-local env_file="launchd.0.frpc.env"
+local env_file="launchd.9.frpc.env"
 [[ -f "${0:a:h}/${env_file}" ]] && source "${0:a:h}/${env_file}"
 
 [[ -z "$(launchctl getenv FRP_SERVER_ADDR)" ]] && launchctl setenv FRP_SERVER_ADDR ${FRP_SERVER_ADDR}
@@ -18,3 +18,10 @@ unset env_file
 # launchctl getenv FRP_TOKEN
 # launchctl getenv FRP_CUSTOM_DOMAINS
 # launchctl getenv FRP_SSH_REMOTE_PORT
+
+# launchctl unsetenv FRP_SERVER_ADDR
+# launchctl unsetenv FRP_SERVER_PORT
+# launchctl unsetenv FRP_USER
+# launchctl unsetenv FRP_TOKEN
+# launchctl unsetenv FRP_CUSTOM_DOMAINS
+# launchctl unsetenv FRP_SSH_REMOTE_PORT

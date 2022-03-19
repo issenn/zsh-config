@@ -6,16 +6,23 @@
 export LANGUAGE=en_US.UTF-8
 # export LANG=C.UTF-8
 export LANG=en_US.UTF-8
+
 export LC_CTYPE=en_US.UTF-8
 # export LC_ALL=C
 # export LC_ALL=C.UTF-8
 export LC_ALL=en_US.UTF-8
+
+# less
+# export LESSCHARSET=
+
+export COLORTERM=truecolor
 # export TERM=xterm-256color
 
 # Set ZSH config root to home (which is the default)
 
 # XDG Base Directory specification
 # https://wiki.archlinux.org/index.php/XDG_Base_Directory
+# https://specifications.freedesktop.org/basedir-spec/basedir-spec-latest.html
 export XDG_CONFIG_HOME="${HOME}/.config"
 export XDG_CACHE_HOME="${HOME}/.cache"
 export XDG_DATA_HOME="${HOME}/.local/share"

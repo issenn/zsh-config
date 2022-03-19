@@ -97,3 +97,5 @@ export RBENV_ROOT="${XDG_CONFIG_HOME:-${HOME}/.config}/rbenv"
 # export GTAGSLABEL=pygments
 
 export MYSQL_HISTFILE="${XDG_CONFIG_HOME:-${HOME}/.config}/mysql/mysql_history"
+
+export WRANGLER_HOME="${XDG_CONFIG_HOME:-${HOME}/.config}/wrangler"

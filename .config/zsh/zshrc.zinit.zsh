@@ -333,7 +333,7 @@ zinit snippet OMZ::plugins/pyenv/pyenv.plugin.zsh
 zinit snippet OMZ::plugins/rbenv/rbenv.plugin.zsh
 zinit snippet https://github.com/issenn/zsh-plugin/blob/master/plugins/plenv/plenv.plugin.zsh
 zinit snippet OMZ::plugins/npm/npm.plugin.zsh
-zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
+# zinit snippet OMZ::plugins/yarn/yarn.plugin.zsh
 zinit snippet OMZ::plugins/golang/golang.plugin.zsh
 zinit snippet OMZ::plugins/docker-compose/docker-compose.plugin.zsh
 zinit snippet OMZ::plugins/docker-machine/docker-machine.plugin.zsh
@@ -401,12 +401,25 @@ zinit light urbainvaes/fzf-marks
 ZINIT[COMPINIT_OPTS]=-C; zicompinit; zicdreplay
 
 
-# Start: Zinit Customization Snippets
+# Start: Zinit Customization alias Snippets
 
+# {{{1
 # zinit ice lucid id-as"auto"
 # zinit snippet 'https://github.com/issenn/zsh-config/blob/master/.config/zsh/snippets/alias.zsh'
+# }}}1
 
-alias rm="rm -i"
+# {{{1
+zinit ice lucid id-as"auto"
+zinit snippet "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/aliases/default.alias.zsh"
+
+zinit ice lucid id-as"auto"
+zinit snippet "${ZDOTDIR:-${XDG_CONFIG_HOME:-${HOME}/.config}/zsh}/aliases/yarn.alias.zsh"
+# }}}1
+
+# End: Zinit Customization alias Snippets
+
+
+# Start: Zinit Customization Snippets
 
 zinit ice lucid id-as"auto"
 # zinit snippet 'https://github.com/issenn/zsh-config/blob/master/.config/zsh/snippets/key-bindings.zsh'
